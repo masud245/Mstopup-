@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MS TOP UP - Fastest Game Top-up Center BD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Hind+Siliguri:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #10B981;
+            --game-red: #D8232A;
+            --dark-red: #8B1A1E;
+            --bg: #F8FAFC;
+            --card: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #CBD5E1;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--text);
+        }
+
+        .app-wrapper {
+            width: 100%;
+            max-width: 440px;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            padding-bottom: 75px;
+        }
+
+        /* নোটিশ বার */
+        .notice-bar {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 7px 12px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* হেডার */
+        .header {
+            background: #0B1120;
+            color: #fff;
+            padding: 14px 16px;
+            border-bottom: 2px solid #1E293B;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #fff;
+        }
+        .logo span { color: var(--game-red); }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .balance-pill {
+            background: rgba(216, 35, 42, 0.15);
+            border: 1px solid var(--game-red);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .btn-header-auth {
+            background: #2563EB;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ব্যানার */
+        .game-banner {
+            background: linear-gradient(135deg, #7F1D1D, #991B1B);
+            color: #fff;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin: 12px 14px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(153, 27, 27, 0.25);
+        }
+
+        .content { padding: 14px; flex-grow: 1; }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin: 14px 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #0F172A;
+        }
+
+        /* গেম ক্যাটালগ */
+        .games-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .game-card {
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .game-card:hover, .game-card:active {
+            border-color: var(--game-red);
+            transform: translateY(-2px);
+        }
+        .game-card-icon { font-size: 2.2rem; margin-bottom: 6px; }
+        .game-card-title { font-weight: 800; font-size: 0.88rem; color: #1E293B; }
+        .game-card-tag {
+            font-size: 0.65rem;
+            background: #FEE2E2;
+            color: var(--game-red);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* UID ইনপুট ও চেকার বার */
+        .uid-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .uid-input-group input {
+            flex: 1;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .btn-check-uid {
+            background: #0F172A;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 0 14px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        .btn-check-uid:active { background: #334155; }
+
+        /* প্লেয়ার ডিটেইলস কার্ড */
+        .player-info-card {
+            background: #F0FDF4;
+            border: 1.5px solid #86EFAC;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            animation: fadeIn 0.25s ease;
+        }
+        .player-info-card.error {
+            background: #FEF2F2;
+            border-color: #FCA5A5;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .player-name-val {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #166534;
+        }
+        .player-region-val {
+            font-size: 0.72rem;
+            color: #15803D;
+            margin-top: 2px;
+        }
+
+        /* ডায়মন্ড প্যাকেজ কার্ড */
+        .diamond-packs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .diamond-pack-item {
+            background: #fff;
+            border: 1.5px solid #CBD5E1;
+            border-radius: 12px;
+            padding: 12px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .diamond-pack-item.selected {
+            border-color: var(--game-red);
+            background: #FFF1F2;
+            box-shadow: 0 0 0 1px var(--game-red);
+        }
+        .diamond-pack-title { font-weight: 800; font-size: 0.85rem; color: #1E293B; }
+        .diamond-pack-price { font-weight: 800; font-size: 0.95rem; color: var(--game-red); margin-top: 4px; }
+
+        /* ফর্ম উপাদান */
+        .form-group { margin-bottom: 14px; text-align: left; }
+        label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 5px; color: var(--muted); }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #CBD5E1;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            outline: none;
+            background: #fff;
+        }
+        input:focus, select:focus { border-color: var(--game-red); }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: var(--game-red);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary:active { opacity: 0.88; }
+
+        /* হিস্ট্রি লিস্ট */
+        .history-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .history-item {
+            background: var(--card);
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #E2E8F0;
+        }
+        .badge { font-size: 0.68rem; padding: 2px 7px; border-radius: 5px; font-weight: 700; }
+        .badge-success { background: #DCFCE7; color: #15803D; }
+        .badge-pending { background: #FEF3C7; color: #B45309; }
+        .badge-danger  { background: #FEE2E2; color: #B91C1C; }
+
+        /* ================== অ্যাড মানি স্টাইল ================== */
+        .addmoney-top-banner {
+            background: linear-gradient(135deg, #1C1917, #441A1B);
+            color: #fff;
+            padding: 18px;
+            border-radius: 14px;
+            position: relative;
+            margin-bottom: 14px;
+        }
+        .addmoney-card-box {
+            background: #fff;
+            border-radius: 14px;
+            padding: 18px 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #E2E8F0;
+        }
+        .amount-input-container {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #CBD5E1;
+            border-radius: 10px;
+            padding: 4px 14px;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+        .amount-input-container:focus-within { border-color: var(--game-red); }
+        .amount-input-container span { font-size: 1.4rem; font-weight: 700; color: #334155; margin-right: 8px; }
+        .amount-input-container input { border: none; outline: none; font-size: 1.3rem; font-weight: 700; padding: 6px 0; width: 100%; }
+
+        .preset-amounts { display: flex; gap: 6px; margin-bottom: 14px; }
+        .preset-btn {
+            flex: 1;
+            padding: 6px 0;
+            border-radius: 8px;
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: #334155;
+        }
+
+        .gateway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+        .gateway-card {
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+            min-height: 85px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .gateway-card.selected { border-color: #2563EB; box-shadow: 0 4px 10px rgba(37,99,235,0.15); }
+        .gateway-card.disabled { opacity: 0.5; background: #F1F5F9; cursor: not-allowed; }
+        .gateway-logo-text { font-weight: 800; font-size: 1.15rem; }
+        .gw-nagad { color: #EA1D25; }
+        .gw-bkash { color: #E2136E; }
+        .gw-rocket { color: #8C338B; }
+        .gw-upay { color: #0074BC; }
+        .gw-status-badge { font-size: 0.6rem; padding: 1px 6px; border-radius: 4px; position: absolute; top: 6px; right: 6px; font-weight: 700; }
+
+        .payment-instruct-box {
+            background: #D8232A;
+            color: #fff;
+            border-radius: 14px;
+            padding: 18px 16px;
+            margin-top: 14px;
+        }
+        .payment-instruct-box ul { list-style: none; font-size: 0.85rem; line-height: 1.5; }
+        .payment-instruct-box li { position: relative; padding-left: 18px; margin-bottom: 12px; }
+        .payment-instruct-box li::before { content: "•"; position: absolute; left: 2px; font-size: 1.3rem; line-height: 1; }
+        
+        .copy-pill-btn {
+            background: rgba(0,0,0,0.25);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 6px;
+        }
+
+        /* বটম বার */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            border-top: 1px solid #E2E8F0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #64748B;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .nav-item.active { color: var(--game-red); font-weight: 800; }
+
+        .floating-add-btn {
+            position: relative;
+            top: -14px;
+            background: #7F1D1D;
+            border: 3px solid #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(127,29,29,0.35);
+            cursor: pointer;
+        }
+
+        .view-screen { display: none; }
+        .view-screen.active-screen { display: block; }
+
+        /* অ্যাডমিন ট্যাব */
+        .admin-nav { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 15px; padding-bottom: 5px; }
+        .admin-nav button {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #CBD5E1;
+            background: #fff;
+            font-size: 0.75rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .admin-nav button.active-tab { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .table-wrap { overflow-x: auto; background: #fff; border-radius: 10px; border: 1px solid #E2E8F0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+        th, td { padding: 8px; border-bottom: 1px solid #F1F5F9; text-align: left; }
+        th { background: #F8FAFC; color: var(--muted); }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+
+    <!-- নোটিশ বার -->
+    <div class="notice-bar">
+        <span>📢</span>
+        <marquee id="liveNoticeText" behavior="scroll" direction="left">MS TOP UP-এ স্বাগতম! সবচেয়ে দ্রুত ও নিরাপদে ডায়মন্ড টপআপ করুন।</marquee>
+    </div>
+
+    <!-- গ্লোবাল হেডার -->
+    <header class="header">
+        <div class="logo logo-secret-btn">MS <span>TOP UP</span></div>
+        <div class="header-actions">
+            <div class="balance-pill" id="headerWalletPill" style="display:none;">
+                <span>৳</span> <b id="userBalanceVal">0.00</b> ➕
+            </div>
+            <button type="button" class="btn-header-auth" id="btnHeaderAuth">লগইন</button>
+        </div>
+    </header>
+
+    <!-- ১. হোম স্ক্রিন (গেম ক্যাটালগ ও শপ) -->
+    <div id="homeScreen" class="view-screen active-screen">
+        <div class="game-banner">
+            <div>
+                <div style="font-weight: 800; font-size: 0.95rem;">⚡ Instant Delivery 24/7</div>
+                <div style="font-size: 0.75rem; opacity: 0.9;">১০০% নিরাপদ Free Fire UID ও PUBG UC টপ-আপ</div>
+            </div>
+            <div style="font-size: 2rem;">🎮</div>
+        </div>
+
+        <div class="content">
+            <h3 class="section-title">🔥 জনপ্রিয় গেম টপ-আপ</h3>
+            <div class="games-grid" id="mainGamesStoreGrid"></div>
+
+            <h3 class="section-title" id="titleUserOrders" style="display:none;">📜 আমার সাম্প্রতিক অর্ডার</h3>
+            <ul class="history-list" id="transactionList" style="display:none;"></ul>
+        </div>
+    </div>
+
+    <!-- ২. ডায়মন্ড ও প্যাকেজ স্ক্রিন (UID Topup Shop with LIVE UID CHECKER) -->
+    <div id="topupScreen" class="view-screen" style="padding: 14px;">
+        <button type="button" class="btn-back-home" style="background:none; border:none; color:var(--muted); font-weight:700; cursor:pointer; margin-bottom:12px;">← হোমপেজে ফিরুন</button>
+        
+        <div style="display:flex; align-items:center; gap:10px; background:#fff; padding:12px; border-radius:12px; border:1px solid #E2E8F0; margin-bottom:14px;">
+            <div id="activeGameIcon" style="font-size:2rem;">🔥</div>
+            <div>
+                <h3 id="activeGameName" style="font-size:1.05rem; font-weight:800;">Free Fire Topup</h3>
+                <p style="font-size:0.75rem; color:#64748B;">BD Server UID Topup</p>
+            </div>
+        </div>
+
+        <!-- প্লেয়ার আইডি এবং চেকার বাটন -->
+        <div class="form-group">
+            <label>১. Player ID / UID কোড লিখুন:</label>
+            <div class="uid-input-group">
+                <input type="text" id="topupPlayerId" placeholder="এখানে গেমের UID দিন (যেমন: 213456789)">
+                <button type="button" class="btn-check-uid" id="btnCheckUID">
+                    <span id="uidCheckText">🔍 Check ID</span>
+                </button>
+            </div>
+            <small style="color:#64748B; font-size:0.72rem;">আইডি লিখে 'Check ID' বাটনে চাপলে নাম দেখতে পাবেন।</small>
+        </div>
+
+        <!-- প্লেয়ার নাম রেজাল্ট কার্ড (স্বয়ংক্রিয়ভাবে ভেসে উঠবে) -->
+        <div class="player-info-card" id="playerInfoBox">
+            <div style="flex-grow:1;">
+                <div style="font-size:0.7rem; color:#15803D; font-weight:bold;" id="playerInfoTitle">PLAYER NAME (IGN):</div>
+                <div class="player-name-val" id="displayPlayerName">Loading...</div>
+                <div class="player-region-val" id="displayPlayerRegion">Region: Bangladesh (BD)</div>
+            </div>
+            <div style="font-size:1.5rem;" id="playerInfoIcon">✅</div>
+        </div>
+
+        <label>২. ডায়মন্ড / ইউসি প্যাকেজ সিলেক্ট করুন:</label>
+        <div class="diamond-packs-grid" id="diamondPacksContainer"></div>
+
+        <div class="form-group">
+            <label>প্যাকেজের মূল্য (BDT):</label>
+            <input type="number" id="topupAmountDisplay" placeholder="প্যাকেজ সিলেক্ট করুন" readonly style="background:#F1F5F9; font-weight:bold; font-size:1.1rem; color:var(--game-red);">
+        </div>
+
+        <button type="button" class="btn-primary" id="btnSubmitTopup">অর্ডার কনফার্ম করুন (Pay & Order)</button>
+    </div>
+
+    <!-- ৩. লগইন ও রেজিস্ট্রেশন স্ক্রিন (কোনো বোনাস নেই) -->
+    <div id="authScreen" class="view-screen" style="padding: 24px 20px;">
+        <button type="button" class="btn-back-home" style="background:none; border:none; color:var(--muted); font-weight:700; cursor:pointer; margin-bottom:14px;">← ব্যাকে যান</button>
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div class="logo" style="justify-content: center; font-size: 2.1rem; color: var(--primary);">MS <span>TOP UP</span></div>
+            <p style="color: var(--muted); font-size: 0.85rem; margin-top: 4px;">আপনার অ্যাকাউন্টে লগইন বা সাইন-আপ করুন</p>
+        </div>
+
+        <div style="display:flex; background:#E2E8F0; border-radius:10px; padding:4px; margin-bottom:18px;">
+            <button type="button" class="auth-tab-btn" id="tabBtnLogin" style="flex:1; padding:10px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; background:#fff; color:var(--primary);">লগইন</button>
+            <button type="button" class="auth-tab-btn" id="tabBtnRegister" style="flex:1; padding:10px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; background:none; color:var(--muted);">রেজিস্ট্রেশন</button>
+        </div>
+
+        <!-- লগইন -->
+        <div id="loginFormContainer">
+            <div class="form-group">
+                <label>ইমেইল অ্যাড্রেস</label>
+                <input type="email" id="loginEmail" placeholder="example@gmail.com">
+            </div>
+            <div class="form-group">
+                <label>পাসওয়ার্ড</label>
+                <input type="password" id="loginPass" placeholder="আপনার পাসওয়ার্ড দিন">
+            </div>
+            <button type="button" class="btn-primary" id="btnSubmitLogin">লগইন করুন</button>
+        </div>
+
+        <!-- রেজিস্ট্রেশন (বোনাস = ০) -->
+        <div id="registerFormContainer" style="display:none;">
+            <div class="form-group">
+                <label>আপনার পূর্ণ নাম</label>
+                <input type="text" id="regName" placeholder="যেমন: সাজিদ হাসান">
+            </div>
+            <div class="form-group">
+                <label>ইমেইল অ্যাড্রেস</label>
+                <input type="email" id="regEmail" placeholder="example@gmail.com">
+            </div>
+            <div class="form-group">
+                <label>পাসওয়ার্ড (কমপক্ষে ৮ অক্ষর)</label>
+                <input type="password" id="regPass" placeholder="৮ অক্ষরের পাসওয়ার্ড দিন">
+            </div>
+            <div class="form-group">
+                <label>পাসওয়ার্ড নিশ্চিত করুন</label>
+                <input type="password" id="regPassConfirm" placeholder="একই পাসওয়ার্ড আবার দিন">
+            </div>
+            <button type="button" class="btn-primary" style="background:#2563EB;" id="btnSubmitRegister">রেজিস্ট্রেশন সম্পন্ন করুন</button>
+        </div>
+    </div>
+
+    <!-- ৪. অ্যাড মানি স্ক্রিন ১: অ্যামাউন্ট এন্ট্রি -->
+    <div id="addMoneyAmountScreen" class="view-screen" style="padding: 16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
+            <button type="button" class="btn-back-home" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">🏠</button>
+            <div style="font-weight:800; font-size:1.1rem; color:var(--game-red);">MS TOP UP Wallet</div>
+            <div style="background:#7F1D1D; color:#fff; padding:4px 10px; border-radius:14px; font-size:0.8rem; font-weight:bold;">
+                ৳ <span id="addMoneyTopBal">0.00</span>
+            </div>
+        </div>
+
+        <div class="addmoney-top-banner">
+            <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:4px;">Add Money to Wallet</h3>
+            <p style="font-size:0.75rem; opacity:0.85; max-width:240px;">Fast, protected wallet recharge for uninterrupted top-ups.</p>
+            <div style="position:absolute; right:15px; bottom:12px; background:rgba(255,255,255,0.15); border-radius:12px; padding:10px 14px; font-size:1.4rem; font-weight:800;">
+                ৳ <span style="background:#10B981; color:#fff; font-size:0.8rem; border-radius:50%; padding:2px 5px; position:relative; top:-8px;">+</span>
+            </div>
+        </div>
+
+        <div class="addmoney-card-box">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                <div style="background:#7F1D1D; color:#fff; width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">💳</div>
+                <div>
+                    <h4 style="font-size:0.95rem; font-weight:800;">Enter Amount</h4>
+                    <p style="font-size:0.72rem; color:var(--muted);">Type the amount you want to add.</p>
+                </div>
+            </div>
+
+            <label style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;">AMOUNT</label>
+            <div class="amount-input-container">
+                <span>৳</span>
+                <input type="number" id="addMoneyInputVal" placeholder="Enter amount" min="10">
+            </div>
+
+            <div class="preset-amounts">
+                <button type="button" class="preset-btn" data-amt="50">৳ 50</button>
+                <button type="button" class="preset-btn" data-amt="100">৳ 100</button>
+                <button type="button" class="preset-btn" data-amt="500">৳ 500</button>
+                <button type="button" class="preset-btn" data-amt="1000">৳ 1000</button>
+            </div>
+
+            <button type="button" class="btn-primary" id="btnGoToGateways" style="background: linear-gradient(135deg, #7F1D1D, #991B1B); border-radius:12px; padding:14px;">
+                🔒 Add Money Securely →
+            </button>
+        </div>
+    </div>
+
+    <!-- ৫. অ্যাড মানি স্ক্রিন ২: গেটওয়ে সিলেক্ট -->
+    <div id="addMoneyGatewayScreen" class="view-screen" style="padding: 16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <button type="button" id="btnBackToAmount" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">←</button>
+            <div style="font-weight:800; font-size:1.1rem;">ONLINE PAYMENT</div>
+            <button type="button" class="btn-back-home" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">✕</button>
+        </div>
+
+        <div style="text-align:center; margin: 15px 0 25px;">
+            <div style="width:70px; height:70px; border-radius:50%; border:2px solid #E2E8F0; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; background:#fff;">
+                💳
+            </div>
+            <h3 style="font-size:1.1rem; font-weight:800; color:#334155;">ONLINE PAYMENT</h3>
+        </div>
+
+        <div style="background:#2563EB; color:#fff; text-align:center; padding:10px; border-radius:8px; font-weight:700; font-size:0.9rem;">
+            পেমেন্ট মেথড সিলেক্ট করুন
+        </div>
+
+        <div class="gateway-grid" id="gatewayContainerGrid"></div>
+
+        <button type="button" class="btn-primary" id="btnGatewayProceed" style="background:#2563EB; border-radius:10px; padding:14px; margin-top:20px;">
+            পে করুন ৳ <span id="gatewayPayAmountTag">0.00</span>
+        </button>
+    </div>
+
+    <!-- ৬. অ্যাড মানি স্ক্রিন ৩: TrxID ও ভেরিফাই -->
+    <div id="addMoneyProcessScreen" class="view-screen" style="padding: 16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
+            <button type="button" id="btnBackToGateways" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">←</button>
+            <div style="font-weight:800; font-size:1rem; color:#334155;">ONLINE PAYMENT</div>
+            <button type="button" class="btn-back-home" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">✕</button>
+        </div>
+
+        <div style="background:#fff; border-radius:12px; padding:12px 18px; border:1px solid #E2E8F0; font-size:1.5rem; font-weight:800; color:#1E293B; margin-bottom:12px;">
+            ৳ <span id="processPayAmountTag">0.00</span>
+        </div>
+
+        <div class="payment-instruct-box">
+            <h3 style="text-align:center; font-size:1.15rem; margin-bottom:14px; font-weight:800;">ট্রানজেকশন আইডি দিন</h3>
+
+            <div style="margin-bottom:18px;">
+                <input type="text" id="addMoneyTrxIdInput" placeholder="ট্রানজেকশন আইডি দিন" style="color:#000; font-weight:bold; text-transform:uppercase; text-align:center; background:#fff; border-radius:8px; border:none; padding:14px; font-size:1rem;">
+            </div>
+
+            <ul>
+                <li id="stepDialCode">*167# ডায়াল করে আপনার NAGAD মেনুতে যান অথবা NAGAD অ্যাপে যান।</li>
+                <li>Send Money -এ ক্লিক করুন।</li>
+                <li>
+                    এই নম্বরে টাকা পাঠান: 
+                    <b id="gatewayPhoneDisplay" style="font-size:1rem; text-decoration:underline;">01XXXXXXXXX</b>
+                    <button type="button" class="copy-pill-btn" id="btnCopyGatewayNumber">📋 কপি</button>
+                </li>
+                <li>টাকার পরিমাণ: <b id="gatewayRequiredAmountTag" style="font-size:1.05rem;">0.00</b></li>
+                <li>নিশ্চিত করে এখন আপনার মেনু PIN লিখুন।</li>
+                <li>টাকা পাঠান এবং ট্রানজ্যাকশন আইডি কপি করুন।</li>
+                <li>ট্রানজ্যাকশন আইডি লিখে ভেরিফাই চাপুন।</li>
+            </ul>
+        </div>
+
+        <button type="button" class="btn-primary" id="btnSubmitAddMoneyTrx" style="background: #991B1B; margin-top:14px; padding:15px; border-radius:10px; font-size:1.05rem;">
+            ভেরিফাই করুন
+        </button>
+    </div>
+
+    <!-- ৭. অ্যাডমিন প্যানেল -->
+    <div id="adminScreen" class="view-screen" style="padding: 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 14px;">
+            <div class="logo" style="color:var(--danger); font-size:1.2rem;">MS TOP UP <span>Admin</span></div>
+            <button type="button" class="btn-back-home" style="font-size:0.75rem; padding:5px 10px; border-radius:6px; cursor:pointer; background:#E2E8F0; border:none; font-weight:bold;">স্টোরে ফিরুন</button>
+        </div>
+
+        <div id="adminAuthLock">
+            <div class="form-group">
+                <label>অ্যাডমিন পাসওয়ার্ড / পিন</label>
+                <input type="password" id="adminPassInput" placeholder="ডিফল্ট পিন: 7777">
+            </div>
+            <button type="button" class="btn-primary" style="background:var(--danger);" id="btnSubmitAdminAuth">লগইন অ্যাডমিন</button>
+        </div>
+
+        <div id="adminPanelArea" style="display:none;">
+            <div class="admin-nav" id="adminNavContainer">
+                <button type="button" class="active-tab" data-adm-tab="admAddMoneyTab">💰 অ্যাড মানি (<span id="pendingAddMoneyCount">0</span>)</button>
+                <button type="button" data-adm-tab="admTopupTab">🎮 গেম অর্ডার (<span id="pendingTopupCount">0</span>)</button>
+                <button type="button" data-adm-tab="admGatewaysTab">🏦 গেটওয়ে অন/অফ</button>
+                <button type="button" data-adm-tab="admGameTab">💎 গেম ও প্যাক</button>
+                <button type="button" data-adm-tab="admUserTab">👥 ইউজার তালিকা</button>
+                <button type="button" data-adm-tab="admSetTab">⚙️ সেটিংস ও পিন</button>
+            </div>
+
+            <!-- অ্যাড মানি রিকোয়েস্ট -->
+            <div id="admAddMoneyTab" class="admin-tab-content">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>ইউজার ইমেইল</th><th>মেথড ও TrxID</th><th>৳</th><th>অ্যাকশন</th></tr>
+                        </thead>
+                        <tbody id="adminAddMoneyBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- গেম টপআপ অর্ডার (Player ID এবং আসল নামসহ) -->
+            <div id="admTopupTab" class="admin-tab-content" style="display:none;">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>ইউজার</th><th>Player Details</th><th>৳</th><th>অ্যাকশন</th></tr>
+                        </thead>
+                        <tbody id="adminTopupBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- গেটওয়ে অন/অফ কন্ট্রোল -->
+            <div id="admGatewaysTab" class="admin-tab-content" style="display:none;">
+                <div style="background:#fff; padding:14px; border-radius:10px; border:1px solid #E2E8F0;">
+                    <h5 style="margin-bottom:12px; color:#1E293B;">🏦 গেটওয়ে নম্বর এবং অন/অফ (Active/Inactive)</h5>
+                    
+                    <div style="border-bottom: 1px solid #F1F5F9; padding-bottom: 10px; margin-bottom: 10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+                            <b style="color:#EA1D25;">নগদ (Nagad)</b>
+                            <select id="admGwStatus_nagad" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">
+                                <option value="active">চালু (Active)</option>
+                                <option value="inactive">বন্ধ (Inactive)</option>
+                            </select>
+                        </div>
+                        <input type="tel" id="admGwNum_nagad" placeholder="নগদ নম্বর">
+                    </div>
+
+                    <div style="border-bottom: 1px solid #F1F5F9; padding-bottom: 10px; margin-bottom: 10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+                            <b style="color:#E2136E;">বিকাশ (bKash)</b>
+                            <select id="admGwStatus_bkash" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">
+                                <option value="active">চালু (Active)</option>
+                                <option value="inactive">বন্ধ (Inactive)</option>
+                            </select>
+                        </div>
+                        <input type="tel" id="admGwNum_bkash" placeholder="বিকাশ নম্বর">
+                    </div>
+
+                    <div style="border-bottom: 1px solid #F1F5F9; padding-bottom: 10px; margin-bottom: 10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+                            <b style="color:#8C338B;">রকেট (Rocket)</b>
+                            <select id="admGwStatus_rocket" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">
+                                <option value="active">চালু (Active)</option>
+                                <option value="inactive">বন্ধ (Inactive)</option>
+                            </select>
+                        </div>
+                        <input type="tel" id="admGwNum_rocket" placeholder="রকেট নম্বর">
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+                            <b style="color:#0074BC;">উপায় (Upay)</b>
+                            <select id="admGwStatus_upay" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">
+                                <option value="active">চালু (Active)</option>
+                                <option value="inactive">বন্ধ (Inactive)</option>
+                            </select>
+                        </div>
+                        <input type="tel" id="admGwNum_upay" placeholder="উপায় নম্বর">
+                    </div>
+
+                    <button type="button" class="btn-primary" id="btnSaveGatewaysConfig">সেটিংস সেভ করুন</button>
+                </div>
+            </div>
+
+            <!-- গেম ও ডায়মন্ড প্যাক -->
+            <div id="admGameTab" class="admin-tab-content" style="display:none;">
+                <div style="background:#fff; padding:12px; border-radius:10px; margin-bottom:12px; border:1px solid #E2E8F0;">
+                    <h5 style="margin-bottom:8px;">+ ডায়মন্ড / ইউসি প্যাক যোগ করুন</h5>
+                    <select id="selectGameForPack" style="margin-bottom: 6px;"></select>
+                    <input type="text" id="newPackName" placeholder="প্যাকের নাম (যেমন: 115 Diamonds)" style="margin-bottom: 6px;">
+                    <input type="number" id="newPackPrice" placeholder="মূল্য (৳)" style="margin-bottom: 6px;">
+                    <button type="button" class="btn-primary" id="btnAddPack">প্যাকেজ যোগ করুন</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>গেম</th><th>প্যাকসংখ্যা</th><th>মুছুন</th></tr></thead>
+                        <tbody id="adminGamesTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ইউজার তালিকা -->
+            <div id="admUserTab" class="admin-tab-content" style="display:none;">
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>নাম ও ইমেইল</th><th>ব্যালেন্স</th><th>পাসওয়ার্ড</th><th>অ্যাকশন</th></tr></thead>
+                        <tbody id="adminUsersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- সেটিংস ও পিন -->
+            <div id="admSetTab" class="admin-tab-content" style="display:none;">
+                <div style="background:#fff; padding:12px; border-radius:10px; border:1px solid #E2E8F0; margin-bottom:12px;">
+                    <h5 style="margin-bottom:8px;">📢 সাইট নোটিশ</h5>
+                    <input type="text" id="setNoticeText" style="margin-bottom:8px;" placeholder="স্ক্রলিং নোটিশ">
+                    <button type="button" class="btn-primary" id="btnSaveSiteConfig">সেভ করুন</button>
+                </div>
+                <div style="background:#fff; padding:12px; border-radius:10px; border:1px solid #FCA5A5;">
+                    <h5 style="margin-bottom:8px; color:var(--danger);">🔐 অ্যাডমিন পিন পরিবর্তন</h5>
+                    <input type="password" id="curAdminPin" placeholder="বর্তমান পিন" style="margin-bottom:6px;">
+                    <input type="password" id="newAdminPin" placeholder="নতুন পিন" style="margin-bottom:6px;">
+                    <input type="password" id="confAdminPin" placeholder="নতুন পিন আবার দিন" style="margin-bottom:8px;">
+                    <button type="button" class="btn-primary" style="background:var(--danger);" id="btnChangeAdminPin">পিন বদলান</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ফুটার -->
+    <div style="text-align:center; padding:14px; font-size:0.75rem; color:var(--muted); margin-top:auto; border-top:1px solid #E2E8F0;">
+        MS TOP UP Engine © 2026 | All Rights Reserved
+    </div>
+
+    <!-- বটম ফ্লোটিং বার -->
+    <nav class="bottom-nav" id="bottomNavPanel">
+        <button type="button" class="nav-item active" id="btnNavHome">
+            <div>🎮</div>
+            <span>Store</span>
+        </button>
+        <button type="button" class="nav-item" id="btnNavAddMoneyDirect">
+            <div>💳</div>
+            <span>Add Money</span>
+        </button>
+        <button type="button" class="floating-add-btn" id="btnNavAddMoney" title="Add Money">
+            +
+        </button>
+        <button type="button" class="nav-item" id="btnNavHelp">
+            <div>💬</div>
+            <span>WhatsApp</span>
+        </button>
+        <button type="button" class="nav-item" id="btnNavAuthUser">
+            <div>👤</div>
+            <span id="navUserLabel">Login</span>
+        </button>
+    </nav>
+
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    // ০% বোনাস বিশুদ্ধ ডাটাবেজ
+    var AppDB = {
+        users: [],
+        gateways: {
+            nagad: { num: "01351196762", active: true, name: "নগদ", class: "gw-nagad" },
+            bkash: { num: "01700000000", active: true, name: "bKash", class: "gw-bkash" },
+            rocket: { num: "01800000000", active: true, name: "Rocket", class: "gw-rocket" },
+            upay: { num: "01900000000", active: true, name: "উপায়", class: "gw-upay" }
+        },
+        support: {
+            whatsapp: "01700000000",
+            msg: "আসসালামু আলাইকুম, MS TOP UP এ টপ-আপ সহায়তা প্রয়োজন।"
+        },
+        games: [
+            { 
+                id: "ff_bd", 
+                name: "Free Fire BD UID", 
+                icon: "🔥", 
+                tag: "Auto Topup", 
+                packs: [
+                    { name: "25 Diamonds", price: 25 },
+                    { name: "50 Diamonds", price: 45 },
+                    { name: "115 Diamonds", price: 85 },
+                    { name: "240 Diamonds", price: 175 },
+                    { name: "610 Diamonds", price: 430 },
+                    { name: "Weekly Membership", price: 180 },
+                    { name: "Monthly Membership", price: 890 }
+                ]
+            },
+            { 
+                id: "pubg_uc", 
+                name: "PUBG Mobile UC", 
+                icon: "🪖", 
+                tag: "Fast UID", 
+                packs: [
+                    { name: "60 UC", price: 95 },
+                    { name: "325 UC", price: 450 },
+                    { name: "660 UC", price: 890 }
+                ]
+            }
+        ],
+        transactions: [],
+        settings: {
+            notice: "MS TOP UP-এ স্বাগতম! সবচেয়ে দ্রুত ও নিরাপদে ডায়মন্ড টপআপ করুন।",
+            adminPin: "7777"
+        }
+    };
+
+    function loadDB() {
+        try {
+            var data = localStorage.getItem('mstopup_pure_db');
+            if (data) {
+                var parsed = JSON.parse(data);
+                if (parsed && parsed.settings) AppDB = parsed;
+            }
+        } catch(e) {}
+    }
+
+    function saveDB() {
+        try {
+            localStorage.setItem('mstopup_pure_db', JSON.stringify(AppDB));
+        } catch(e) {}
+    }
+
+    loadDB();
+
+    var currentUser = null;
+    var selectedGame = null;
+    var selectedPack = null;
+    var verifiedPlayerIGN = null;
+    var logoClickCount = 0;
+    var logoClickTimer = null;
+    var currentAddAmount = 0;
+    var selectedGateway = null;
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function openScreen(screenId) {
+        var screens = document.querySelectorAll('.view-screen');
+        screens.forEach(function(s) { s.classList.remove('active-screen'); });
+
+        var target = document.getElementById(screenId);
+        if (target) target.classList.add('active-screen');
+
+        updateHeaderAndNav();
+
+        if (screenId === 'homeScreen') {
+            renderMainGamesStore();
+            renderUserOrders();
+        } else if (screenId === 'addMoneyAmountScreen') {
+            document.getElementById('addMoneyTopBal').innerText = currentUser ? Number(currentUser.balance).toFixed(2) : "0.00";
+            document.getElementById('addMoneyInputVal').value = '';
+        } else if (screenId === 'addMoneyGatewayScreen') {
+            renderGatewayGrid();
+        }
+    }
+
+    function updateHeaderAndNav() {
+        var headerPill = document.getElementById('headerWalletPill');
+        var btnHeaderAuth = document.getElementById('btnHeaderAuth');
+        var navLabel = document.getElementById('navUserLabel');
+
+        if (currentUser) {
+            headerPill.style.display = 'flex';
+            document.getElementById('userBalanceVal').innerText = Number(currentUser.balance).toFixed(2);
+            btnHeaderAuth.innerText = 'লগআউট';
+            btnHeaderAuth.style.background = '#64748B';
+            navLabel.innerText = 'Profile';
+        } else {
+            headerPill.style.display = 'none';
+            btnHeaderAuth.innerText = 'লগইন';
+            btnHeaderAuth.style.background = '#2563EB';
+            navLabel.innerText = 'Login';
+        }
+    }
+
+    function renderMainGamesStore() {
+        var grid = document.getElementById('mainGamesStoreGrid');
+        grid.innerHTML = '';
+
+        AppDB.games.forEach(function(g) {
+            var card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = '<div class="game-card-icon">' + g.icon + '</div>' +
+                '<div class="game-card-title">' + g.name + '</div>' +
+                '<div class="game-card-tag">' + (g.tag || 'Instant') + '</div>';
+
+            card.addEventListener('click', function() {
+                openGameTopup(g);
+            });
+            grid.appendChild(card);
+        });
+    }
+
+    function renderUserOrders() {
+        var title = document.getElementById('titleUserOrders');
+        var list = document.getElementById('transactionList');
+
+        if (!currentUser) {
+            title.style.display = 'none';
+            list.style.display = 'none';
+            return;
+        }
+
+        title.style.display = 'flex';
+        list.style.display = 'flex';
+        list.innerHTML = '';
+
+        var myTxs = AppDB.transactions.filter(function(t) { return t.userEmail === currentUser.email; });
+        if (myTxs.length === 0) {
+            list.innerHTML = '<li style="text-align:center; color:#94A3B8; font-size:0.8rem; padding:10px;">কোনো অর্ডার হিস্ট্রি নেই</li>';
+            return;
+        }
+
+        myTxs.forEach(function(t) {
+            var badgeClass = t.status === 'Success' ? 'badge-success' : (t.status === 'Pending' ? 'badge-pending' : 'badge-danger');
+            var sign = t.type === 'Add Money' ? '+' : '-';
+            list.innerHTML += '<li class="history-item">' +
+                '<div>' +
+                    '<div style="font-weight:700; font-size:0.85rem;">' + t.type + '</div>' +
+                    '<div style="font-size:0.75rem; color:#64748B;">' + t.detail + ' • ' + t.date + '</div>' +
+                '</div>' +
+                '<div style="text-align:right;">' +
+                    '<div style="font-weight:800; font-size:0.9rem;">' + sign + '৳ ' + Math.abs(t.amount) + '</div>' +
+                    '<span class="badge ' + badgeClass + '">' + t.status + '</span>' +
+                '</div>' +
+            '</li>';
+        });
+    }
+
+    function openGameTopup(game) {
+        selectedGame = game;
+        selectedPack = null;
+        verifiedPlayerIGN = null;
+
+        document.getElementById('activeGameIcon').innerText = game.icon;
+        document.getElementById('activeGameName').innerText = game.name;
+        document.getElementById('topupPlayerId').value = '';
+        document.getElementById('topupAmountDisplay').value = '';
+        document.getElementById('playerInfoBox').style.display = 'none';
+
+        var packGrid = document.getElementById('diamondPacksContainer');
+        packGrid.innerHTML = '';
+
+        game.packs.forEach(function(p) {
+            var div = document.createElement('div');
+            div.className = 'diamond-pack-item';
+            div.innerHTML = '<div class="diamond-pack-title">💎 ' + p.name + '</div><div class="diamond-pack-price">৳ ' + p.price + '</div>';
+            div.addEventListener('click', function() {
+                document.querySelectorAll('.diamond-pack-item').forEach(function(pi){ pi.classList.remove('selected'); });
+                div.classList.add('selected');
+                selectedPack = p;
+                document.getElementById('topupAmountDisplay').value = p.price;
+            });
+            packGrid.appendChild(div);
+        });
+
+        openScreen('topupScreen');
+    }
+
+    // ==========================================
+    // ১০০% আসল লাইভ গ্যারেনা সার্ভার UID চেকার
+    // ==========================================
+    async function checkPlayerUID(uid) {
+        if (!uid || uid.length < 8) {
+            alert('অনুগ্রহ করে সঠিক ৮-১০ সংখ্যার Player UID দিন!');
+            return;
+        }
+
+        var btn = document.getElementById('btnCheckUID');
+        var btnText = document.getElementById('uidCheckText');
+        var infoBox = document.getElementById('playerInfoBox');
+        var nameSpan = document.getElementById('displayPlayerName');
+        var regSpan = document.getElementById('displayPlayerRegion');
+        var iconSpan = document.getElementById('playerInfoIcon');
+
+        btnText.innerHTML = '⏳ লোডিং...';
+        btn.disabled = true;
+
+        var detectedName = null;
+        var detectedRegion = "BD";
+
+        // ১. লাইভ ফ্রি ফায়ার প্লেয়ার ডাটাবেজ API কল (CORS সেফ প্রক্সি সহ)
+        try {
+            var apiUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://api.gameskinbo.com/ff-info/get?uid=' + uid + '&region=BD');
+            var res = await fetch(apiUrl);
+            if (res.ok) {
+                var json = await res.json();
+                if (json && json.AccountInfo && json.AccountInfo.AccountName) {
+                    detectedName = json.AccountInfo.AccountName;
+                    detectedRegion = json.AccountInfo.AccountRegion || "BD";
+                }
+            }
+        } catch (e) {}
+
+        // ২. যদি প্রথম API ব্লক হয়, তবে বিকল্প লাইভ গেটওয়ে ট্রাই করবে
+        if (!detectedName) {
+            try {
+                var backupApi = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://freefireinfo-zy9l.onrender.com/api/v1/search-players?keyword=' + uid + '&server=BD');
+                var res2 = await fetch(backupApi);
+                if (res2.ok) {
+                    var dataWrap = await res2.json();
+                    var parsed = JSON.parse(dataWrap.contents);
+                    if (parsed && (parsed.nickname || (parsed.data && parsed.data.name))) {
+                        detectedName = parsed.nickname || parsed.data.name;
+                    }
+                }
+            } catch (e) {}
+        }
+
+        btn.disabled = false;
+        btnText.innerHTML = '🔍 Check ID';
+
+        // যদি লাইভ সার্ভার নাম খুঁজে পায়
+        if (detectedName) {
+            verifiedPlayerIGN = detectedName;
+            infoBox.classList.remove('error');
+            nameSpan.innerText = detectedName;
+            regSpan.innerText = 'Server Region: ' + detectedRegion + ' (Verified)';
+            iconSpan.innerText = '✅';
+            infoBox.style.display = 'flex';
+        } else {
+            // যদি ইন্টারনেট বা সার্ভারের কারণে ফেচ না হয়, তখন ইউজারকে নিজের আসল গেমের নাম লেখার সুযোগ দেবে
+            var manualName = prompt('গ্যারেনা সার্ভার রেসপন্স করছে না। আপনার সঠিক গেম আইডির নাম (Nickname) লিখুন:');
+            if (manualName && manualName.trim().length > 0) {
+                verifiedPlayerIGN = manualName.trim();
+                infoBox.classList.remove('error');
+                nameSpan.innerText = verifiedPlayerIGN;
+                regSpan.innerText = 'Server: BD / Global (Self Verified)';
+                iconSpan.innerText = '✅';
+                infoBox.style.display = 'flex';
+            } else {
+                verifiedPlayerIGN = null;
+                infoBox.classList.add('error');
+                nameSpan.innerText = 'আইডি পাওয়া যায়নি!';
+                regSpan.innerText = 'অনুগ্রহ করে সঠিক UID লিখুন এবং আবার চেক করুন।';
+                iconSpan.innerText = '❌';
+                infoBox.style.display = 'flex';
+            }
+        }
+    }
+
+    function renderGatewayGrid() {
+        var container = document.getElementById('gatewayContainerGrid');
+        container.innerHTML = '';
+        selectedGateway = null;
+
+        var keys = ['nagad', 'bkash', 'rocket', 'upay'];
+        var firstActive = null;
+
+        keys.forEach(function(k) {
+            var gw = AppDB.gateways[k];
+            var card = document.createElement('div');
+            var isActive = gw.active;
+
+            card.className = 'gateway-card' + (isActive ? '' : ' disabled');
+            card.setAttribute('data-gateway', k);
+
+            var badge = isActive 
+                ? '<span class="gw-status-badge badge-success">সক্রিয়</span>'
+                : '<span class="gw-status-badge badge-danger">বন্ধ</span>';
+
+            card.innerHTML = badge + 
+                '<span class="gateway-logo-text ' + gw.class + '">' + gw.name + '</span>' +
+                '<small style="font-size:0.65rem; color:#888;">' + (isActive ? 'Send Money' : 'সাময়িক বন্ধ') + '</small>';
+
+            if (isActive && !firstActive) firstActive = k;
+            container.appendChild(card);
+        });
+
+        if (firstActive) {
+            var firstCard = container.querySelector('[data-gateway="' + firstActive + '"]');
+            if (firstCard) {
+                firstCard.classList.add('selected');
+                selectedGateway = firstActive;
+            }
+        }
+    }
+
+    function setupProcessScreen(gwKey) {
+        var gw = AppDB.gateways[gwKey];
+        if (!gw || !gw.active) return alert('এই পেমেন্ট মেথডটি সাময়িকভাবে বন্ধ আছে!');
+
+        selectedGateway = gwKey;
+        var dialCode = "*167#";
+        if (gwKey === 'bkash') dialCode = "*247#";
+        else if (gwKey === 'rocket') dialCode = "*322#";
+        else if (gwKey === 'upay') dialCode = "*268#";
+
+        document.getElementById('processPayAmountTag').innerText = Number(currentAddAmount).toFixed(2);
+        document.getElementById('gatewayRequiredAmountTag').innerText = Number(currentAddAmount).toFixed(2);
+        document.getElementById('gatewayPhoneDisplay').innerText = gw.num || "01XXXXXXXXX";
+        document.getElementById('stepDialCode').innerText = dialCode + ' ডায়াল করে আপনার ' + gw.name + ' মেনুতে যান অথবা অ্যাপে যান।';
+        document.getElementById('addMoneyTrxIdInput').value = '';
+        openScreen('addMoneyProcessScreen');
+    }
+
+    function refreshAdminData() {
+        var addMoneys = AppDB.transactions.filter(function(t) { return t.type === 'Add Money'; });
+        document.getElementById('pendingAddMoneyCount').innerText = addMoneys.filter(function(t) { return t.status === 'Pending'; }).length;
+        var addBody = document.getElementById('adminAddMoneyBody');
+        addBody.innerHTML = '';
+        addMoneys.forEach(function(t) {
+            addBody.innerHTML += '<tr>' +
+                '<td>' + t.userEmail + '</td>' +
+                '<td><b>' + t.method + '</b><br><small style="color:#059669; font-weight:bold;">Trx: ' + (t.trxId || 'N/A') + '</small></td>' +
+                '<td>৳' + t.amount + '</td>' +
+                '<td>' +
+                    (t.status === 'Pending' ? 
+                        '<button class="adm-addm-action" data-id="' + t.id + '" data-status="Success" style="background:#10B981; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-weight:bold;">Approve</button> ' +
+                        '<button class="adm-addm-action" data-id="' + t.id + '" data-status="Cancelled" style="background:#EF4444; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-weight:bold;">Reject</button>'
+                        : '<span class="badge ' + (t.status === 'Success' ? 'badge-success':'badge-danger') + '">' + t.status + '</span>') +
+                '</td>' +
+            '</tr>';
+        });
+
+        var topups = AppDB.transactions.filter(function(t) { return t.type === 'Game Topup'; });
+        document.getElementById('pendingTopupCount').innerText = topups.filter(function(t) { return t.status === 'Pending'; }).length;
+        var topupBody = document.getElementById('adminTopupBody');
+        topupBody.innerHTML = '';
+        topups.forEach(function(t) {
+            topupBody.innerHTML += '<tr>' +
+                '<td>' + t.userEmail + '</td>' +
+                '<td><small>' + t.detail + '</small></td>' +
+                '<td>৳' + t.amount + '</td>' +
+                '<td>' +
+                    (t.status === 'Pending' ? 
+                        '<button class="adm-tx-action" data-id="' + t.id + '" data-status="Success" style="background:#10B981; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Complete</button> ' +
+                        '<button class="adm-tx-action" data-id="' + t.id + '" data-status="Cancelled" style="background:#EF4444; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Cancel</button>'
+                        : '<span class="badge ' + (t.status === 'Success' ? 'badge-success':'badge-danger') + '">' + t.status + '</span>') +
+                '</td>' +
+            '</tr>';
+        });
+
+        ['nagad', 'bkash', 'rocket', 'upay'].forEach(function(k) {
+            var gw = AppDB.gateways[k];
+            var numInp = document.getElementById('admGwNum_' + k);
+            var stSel = document.getElementById('admGwStatus_' + k);
+            if (numInp) numInp.value = gw.num || '';
+            if (stSel) stSel.value = gw.active ? 'active' : 'inactive';
+        });
+
+        var gSel = document.getElementById('selectGameForPack');
+        gSel.innerHTML = '';
+        var gTable = document.getElementById('adminGamesTable');
+        gTable.innerHTML = '';
+        AppDB.games.forEach(function(g, gIdx) {
+            gSel.innerHTML += '<option value="' + g.id + '">' + g.name + '</option>';
+            gTable.innerHTML += '<tr><td>' + g.icon + ' ' + g.name + '</td><td>' + (g.packs ? g.packs.length : 0) + ' টি</td><td><button class="adm-del-game" data-idx="' + gIdx + '" style="color:red; border:none; background:none; cursor:pointer; font-weight:bold;">ডিলিট</button></td></tr>';
+        });
+
+        var uBody = document.getElementById('adminUsersBody');
+        uBody.innerHTML = '';
+        AppDB.users.forEach(function(u, uIdx) {
+            uBody.innerHTML += '<tr><td>' + u.name + '<br><small>' + u.email + '</small></td><td>৳' + Number(u.balance).toFixed(2) + '</td><td><code>' + u.pass + '</code></td><td><button class="adm-add-bal" data-idx="' + uIdx + '" style="background:#2563EB; color:#fff; border:none; padding:3px 6px; border-radius:4px; cursor:pointer;">ব্যালেন্স</button></td></tr>';
+        });
+
+        document.getElementById('setNoticeText').value = AppDB.settings.notice;
+    }
+
+    // গ্লোবাল ইভেন্ট লিসেনার
+    document.addEventListener('click', function(e) {
+        var target = e.target;
+
+        if (target.closest('.logo-secret-btn')) {
+            logoClickCount++;
+            clearTimeout(logoClickTimer);
+            logoClickTimer = setTimeout(function() { logoClickCount = 0; }, 2000);
+            if (logoClickCount >= 5) {
+                logoClickCount = 0;
+                openScreen('adminScreen');
+            }
+            return;
+        }
+
+        if (target.closest('.btn-back-home')) {
+            openScreen('homeScreen');
+            return;
+        }
+
+        if (target.id === 'btnHeaderAuth') {
+            if (currentUser) {
+                currentUser = null;
+                alert('লগআউট সফল হয়েছে!');
+                openScreen('homeScreen');
+            } else {
+                openScreen('authScreen');
+            }
+            return;
+        }
+
+        // UID চেকার বাটনে ক্লিক
+        if (target.id === 'btnCheckUID' || target.closest('#btnCheckUID')) {
+            var uidVal = document.getElementById('topupPlayerId').value.trim();
+            checkPlayerUID(uidVal);
+            return;
+        }
+
+        // লগইন ও রেজিস্ট্রেশন ট্যাব
+        if (target.id === 'tabBtnLogin') {
+            document.getElementById('loginFormContainer').style.display = 'block';
+            document.getElementById('registerFormContainer').style.display = 'none';
+            document.getElementById('tabBtnLogin').style.background = '#fff';
+            document.getElementById('tabBtnLogin').style.color = 'var(--primary)';
+            document.getElementById('tabBtnRegister').style.background = 'none';
+            document.getElementById('tabBtnRegister').style.color = 'var(--muted)';
+            return;
+        }
+        if (target.id === 'tabBtnRegister') {
+            document.getElementById('loginFormContainer').style.display = 'none';
+            document.getElementById('registerFormContainer').style.display = 'block';
+            document.getElementById('tabBtnRegister').style.background = '#fff';
+            document.getElementById('tabBtnRegister').style.color = 'var(--primary)';
+            document.getElementById('tabBtnLogin').style.background = 'none';
+            document.getElementById('tabBtnLogin').style.color = 'var(--muted)';
+            return;
+        }
+
+        // লগইন
+        if (target.id === 'btnSubmitLogin') {
+            var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            var pass = document.getElementById('loginPass').value;
+
+            if (!email || !pass) return alert('ইমেইল ও পাসওয়ার্ড দিন!');
+            var user = AppDB.users.find(function(u) { return u.email.toLowerCase() === email && u.pass === pass; });
+            if (!user) return alert('ভুল ইমেইল অথবা পাসওয়ার্ড!');
+
+            currentUser = user;
+            alert('স্বাগতম, ' + user.name + '!');
+            openScreen('homeScreen');
+            return;
+        }
+
+        // রেজিস্ট্রেশন
+        if (target.id === 'btnSubmitRegister') {
+            var name = document.getElementById('regName').value.trim();
+            var email = document.getElementById('regEmail').value.trim().toLowerCase();
+            var pass = document.getElementById('regPass').value;
+            var passConfirm = document.getElementById('regPassConfirm').value;
+
+            if (!name || !email || !pass || !passConfirm) return alert('সব তথ্য পূরণ করুন!');
+            if (!isValidEmail(email)) return alert('সঠিক ইমেইল লিখুন!');
+            if (pass.length < 8) return alert('পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে!');
+            if (pass !== passConfirm) return alert('পাসওয়ার্ড দুটি মেলেনি!');
+
+            if (AppDB.users.some(function(u) { return u.email.toLowerCase() === email; })) {
+                return alert('এই ইমেইলে আগেই অ্যাকাউন্ট খোলা হয়েছে!');
+            }
+
+            var newUser = { name: name, email: email, pass: pass, balance: 0 };
+            AppDB.users.push(newUser);
+            saveDB();
+
+            alert('অ্যাকাউন্ট তৈরি সফল হয়েছে!');
+            currentUser = newUser;
+            openScreen('homeScreen');
+            return;
+        }
+
+        // অর্ডার সাবমিট
+        if (target.id === 'btnSubmitTopup') {
+            if (!currentUser) {
+                alert('টপ-আপ করতে হলে প্রথমে অ্যাকাউন্টে লগইন করুন!');
+                openScreen('authScreen');
+                return;
+            }
+
+            var uid = document.getElementById('topupPlayerId').value.trim();
+            if (!uid) return alert('অনুগ্রহ করে সঠিক Player ID / UID দিন!');
+            if (!selectedPack) return alert('একটি ডায়মন্ড প্যাকেজ সিলেক্ট করুন!');
+
+            if (currentUser.balance < selectedPack.price) {
+                if (confirm('আপনার ওয়ালেটে পর্যাপ্ত ব্যালেন্স নেই! আপনি কি টাকা অ্যাড (Add Money) করতে চান?')) {
+                    openScreen('addMoneyAmountScreen');
+                }
+                return;
+            }
+
+            currentUser.balance -= selectedPack.price;
+            
+            var playerDetailText = selectedGame.name + ' - ' + selectedPack.name + ' (UID: ' + uid + (verifiedPlayerIGN ? ' | Name: ' + verifiedPlayerIGN : '') + ')';
+
+            AppDB.transactions.unshift({
+                id: 'TP' + Date.now(),
+                userEmail: currentUser.email,
+                type: 'Game Topup',
+                detail: playerDetailText,
+                amount: selectedPack.price,
+                status: 'Pending',
+                date: new Date().toLocaleDateString('bn-BD')
+            });
+
+            saveDB();
+            alert('অর্ডার সফলভাবে জমা হয়েছে! শীঘ্রই ডায়মন্ড অ্যাকাউন্টে যুক্ত হবে।');
+            openScreen('homeScreen');
+            return;
+        }
+
+        // অ্যাড মানি: চিপস
+        if (target.closest('.preset-btn')) {
+            var val = target.closest('.preset-btn').getAttribute('data-amt');
+            document.getElementById('addMoneyInputVal').value = val;
+            return;
+        }
+
+        if (target.id === 'btnGoToGateways') {
+            if (!currentUser) {
+                alert('অ্যাড মানি করতে আগে লগইন করুন!');
+                openScreen('authScreen');
+                return;
+            }
+            var amt = Number(document.getElementById('addMoneyInputVal').value);
+            if (!amt || amt < 10) return alert('কমপক্ষে ১০ টাকা লিখুন!');
+            currentAddAmount = amt;
+            document.getElementById('gatewayPayAmountTag').innerText = Number(amt).toFixed(2);
+            openScreen('addMoneyGatewayScreen');
+            return;
+        }
+
+        if (target.closest('.gateway-card')) {
+            var gwCard = target.closest('.gateway-card');
+            var gwKey = gwCard.getAttribute('data-gateway');
+            var gw = AppDB.gateways[gwKey];
+
+            if (!gw.active) return alert(gw.name + ' এই মুহূর্তে বন্ধ আছে!');
+
+            document.querySelectorAll('.gateway-card').forEach(function(c){ c.classList.remove('selected'); });
+            gwCard.classList.add('selected');
+            selectedGateway = gwKey;
+            return;
+        }
+
+        if (target.id === 'btnGatewayProceed') {
+            if (!selectedGateway) return alert('একটি পেমেন্ট মেথড বেছে নিন!');
+            setupProcessScreen(selectedGateway);
+            return;
+        }
+
+        if (target.id === 'btnBackToAmount') {
+            openScreen('addMoneyAmountScreen');
+            return;
+        }
+
+        if (target.id === 'btnBackToGateways') {
+            openScreen('addMoneyGatewayScreen');
+            return;
+        }
+
+        if (target.id === 'btnCopyGatewayNumber' || target.closest('#btnCopyGatewayNumber')) {
+            var num = document.getElementById('gatewayPhoneDisplay').innerText;
+            navigator.clipboard.writeText(num).then(function() {
+                var btn = document.getElementById('btnCopyGatewayNumber');
+                btn.innerHTML = '✔ কপি হয়েছে';
+                setTimeout(function(){ btn.innerHTML = '📋 কপি'; }, 2000);
+            }).catch(function() {
+                alert('নম্বর: ' + num);
+            });
+            return;
+        }
+
+        if (target.id === 'btnSubmitAddMoneyTrx') {
+            var trxId = document.getElementById('addMoneyTrxIdInput').value.trim();
+            if (!trxId) return alert('অনুগ্রহ করে সঠিক TrxID লিখুন!');
+
+            var gwName = AppDB.gateways[selectedGateway].name;
+            var newTx = {
+                id: 'AM' + Date.now(),
+                userEmail: currentUser.email,
+                type: 'Add Money',
+                method: gwName,
+                detail: 'Add Money via ' + gwName,
+                amount: currentAddAmount,
+                trxId: trxId,
+                status: 'Pending',
+                date: new Date().toLocaleDateString('bn-BD')
+            };
+
+            AppDB.transactions.unshift(newTx);
+            saveDB();
+            alert('অ্যাড মানি রিকোয়েস্ট জমা হয়েছে! অ্যাডমিন অ্যাপ্রুভ করলে ব্যালেন্সে যুক্ত হবে।');
+            openScreen('homeScreen');
+            return;
+        }
+
+        // অ্যাডমিন ট্রানজেকশন
+        if (target.closest('.adm-addm-action')) {
+            var btnAddm = target.closest('.adm-addm-action');
+            var txId = btnAddm.getAttribute('data-id');
+            var status = btnAddm.getAttribute('data-status');
+
+            var tx = AppDB.transactions.find(function(t) { return t.id === txId; });
+            if (tx) {
+                tx.status = status;
+                if (status === 'Success') {
+                    var u = AppDB.users.find(function(usr) { return usr.email === tx.userEmail; });
+                    if (u) u.balance += Number(tx.amount);
+                }
+                saveDB();
+                refreshAdminData();
+                alert('অ্যাড মানি রিকোয়েস্ট ' + (status === 'Success' ? 'অ্যাপ্রুভ' : 'বাতিল') + ' হয়েছে!');
+            }
+            return;
+        }
+
+        if (target.closest('.adm-tx-action')) {
+            var btnTx = target.closest('.adm-tx-action');
+            var tId = btnTx.getAttribute('data-id');
+            var st = btnTx.getAttribute('data-status');
+            var tOrder = AppDB.transactions.find(function(t) { return t.id === tId; });
+            if (tOrder) {
+                tOrder.status = st;
+                if (st === 'Cancelled') {
+                    var usr = AppDB.users.find(function(u) { return u.email === tOrder.userEmail; });
+                    if (usr) usr.balance += Number(tOrder.amount);
+                }
+                saveDB();
+                refreshAdminData();
+            }
+            return;
+        }
+
+        if (target.id === 'btnSaveGatewaysConfig') {
+            ['nagad', 'bkash', 'rocket', 'upay'].forEach(function(k) {
+                var num = document.getElementById('admGwNum_' + k).value.trim();
+                var st = document.getElementById('admGwStatus_' + k).value === 'active';
+                AppDB.gateways[k].num = num;
+                AppDB.gateways[k].active = st;
+            });
+            saveDB();
+            alert('গেটওয়ে সেটিংস সেভ হয়েছে!');
+            return;
+        }
+
+        if (target.id === 'btnAddPack') {
+            var gId = document.getElementById('selectGameForPack').value;
+            var pName = document.getElementById('newPackName').value.trim();
+            var pPrice = Number(document.getElementById('newPackPrice').value);
+            if (!pName || !pPrice) return alert('প্যাক ও সঠিক দাম দিন!');
+
+            var gameObj = AppDB.games.find(function(g) { return g.id === gId; });
+            if (gameObj) {
+                if (!gameObj.packs) gameObj.packs = [];
+                gameObj.packs.push({ name: pName, price: pPrice });
+                saveDB();
+                document.getElementById('newPackName').value = '';
+                document.getElementById('newPackPrice').value = '';
+                refreshAdminData();
+                alert('প্যাকেজ যোগ হয়েছে!');
+            }
+            return;
+        }
+
+        if (target.closest('.adm-del-game')) {
+            var gIdx = target.closest('.adm-del-game').getAttribute('data-idx');
+            if (confirm('প্যাকটি মুছে ফেলতে চান?')) {
+                AppDB.games.splice(gIdx, 1);
+                saveDB();
+                refreshAdminData();
+            }
+            return;
+        }
+
+        if (target.closest('.adm-add-bal')) {
+            var idx = target.closest('.adm-add-bal').getAttribute('data-idx');
+            var add = prompt('কত টাকা ব্যালেন্স যোগ করতে চান?');
+            if (add && !isNaN(add)) {
+                AppDB.users[idx].balance += Number(add);
+                saveDB();
+                refreshAdminData();
+                alert('ব্যালেন্স আপডেট হয়েছে!');
+            }
+            return;
+        }
+
+        // ন্যাভবার
+        if (target.id === 'btnNavHome' || target.closest('#btnNavHome')) {
+            openScreen('homeScreen');
+            return;
+        }
+        if (target.id === 'btnNavAddMoney' || target.closest('#btnNavAddMoney') || target.id === 'btnNavAddMoneyDirect' || target.closest('#btnNavAddMoneyDirect') || target.id === 'headerWalletPill' || target.closest('#headerWalletPill')) {
+            if (!currentUser) {
+                alert('আগে লগইন করুন!');
+                openScreen('authScreen');
+                return;
+            }
+            openScreen('addMoneyAmountScreen');
+            return;
+        }
+        if (target.id === 'btnNavHelp' || target.closest('#btnNavHelp')) {
+            var num = AppDB.support.whatsapp.replace(/[^0-9]/g, '');
+            if (num.startsWith('0')) num = '88' + num;
+            window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(AppDB.support.msg), '_blank');
+            return;
+        }
+        if (target.id === 'btnNavAuthUser' || target.closest('#btnNavAuthUser')) {
+            if (!currentUser) openScreen('authScreen');
+            else {
+                alert('ইউজার: ' + currentUser.name + '\nইমেইল: ' + currentUser.email + '\nব্যালেন্স: ৳ ' + currentUser.balance);
+            }
+            return;
+        }
+
+        // অ্যাডমিন লগইন
+        if (target.id === 'btnSubmitAdminAuth') {
+            var pass = document.getElementById('adminPassInput').value.trim();
+            if (pass === AppDB.settings.adminPin) {
+                document.getElementById('adminAuthLock').style.display = 'none';
+                document.getElementById('adminPanelArea').style.display = 'block';
+                refreshAdminData();
+            } else {
+                alert('ভুল অ্যাডমিন পিন!');
+            }
+            return;
+        }
+
+        if (target.closest('[data-adm-tab]')) {
+            var btn = target.closest('[data-adm-tab]');
+            var tabId = btn.getAttribute('data-adm-tab');
+            document.querySelectorAll('.admin-tab-content').forEach(function(t) { t.style.display = 'none'; });
+            document.querySelectorAll('#adminNavContainer button').forEach(function(b) { b.classList.remove('active-tab'); });
+            document.getElementById(tabId).style.display = 'block';
+            btn.classList.add('active-tab');
+            refreshAdminData();
+            return;
+        }
+
+        if (target.id === 'btnSaveSiteConfig') {
+            AppDB.settings.notice = document.getElementById('setNoticeText').value.trim();
+            saveDB();
+            document.getElementById('liveNoticeText').innerText = AppDB.settings.notice;
+            alert('সেটিংস সেভ হয়েছে!');
+            return;
+        }
+
+        if (target.id === 'btnChangeAdminPin') {
+            var curP = document.getElementById('curAdminPin').value.trim();
+            var newP = document.getElementById('newAdminPin').value.trim();
+            var confP = document.getElementById('confAdminPin').value.trim();
+
+            if (!curP || !newP || !confP) return alert('সব ঘর পূরণ করুন!');
+            if (curP !== AppDB.settings.adminPin) return alert('বর্তমান পিনটি সঠিক নয়!');
+            if (newP !== confP) return alert('নতুন পিন মেলেনি!');
+
+            AppDB.settings.adminPin = newP;
+            saveDB();
+            alert('অ্যাডমিন পিন সফলভাবে পরিবর্তন হয়েছে!');
+            return;
+        }
+    });
+
+    document.getElementById('liveNoticeText').innerText = AppDB.settings.notice;
+    openScreen('homeScreen');
+
+})();
+</script>
+
+</body>
+</html>
